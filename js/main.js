@@ -28,17 +28,17 @@ $(document).ready(function(){
 		item.attending = ["Attending Months:", $('#attending').val()];
 		item.memtype = ["Member Type:", $('#checkbox').val()];
 		
-		sessionStorage.setItem(id, JSON.stringify(item));
+		localStorage.setItem(id, JSON.stringify(item));
 		alert("Data submitted, a ministry leader will contact you soon.");
 		$.mobile.changePage( '#main', {reloadPage: true},{ allowSamePageTranstion: true},{ transition: 'none'});
 
 	});
 	
 	    function clearData() {
-        if (sessionStorage.length === 0) {
+        if (localStorage.length === 0) {
             alert("There is nothing in Storage");
         } else {
-            sessionStorage.clear();
+            localStorage.clear();
             alert("Data has been cleared");
             return false;
         }
@@ -57,7 +57,7 @@ $(document).ready(function(){
 			'<li>Attending Months: ' + item.attending + '</li> ' +
 			'<li>Partner?: ' + item.memtype +'</li>'
 		);
-	sessionStorage.getItem("id", JSON.stringify());
+	localStorage.getItem("id", JSON.stringify());
 };
 $('#pullDiv').listview('refresh');
 
@@ -80,7 +80,7 @@ $('#pullDiv').listview('refresh');
     function delitem () {
 	var ask = confirm ("Are you sure? This can't be undone.");
 	if (ask){
-	    sessionStorage.removeItem(this.key);
+	    localStorage.removeItem(this.key);
             alert("Volunteer Deleted");
            
 
@@ -92,7 +92,7 @@ $('#pullDiv').listview('refresh');
     //Edit an individual item
     function edit (key) {
 	//Get data from item in session storage
-	var value = sessionStorage.getItem(key);
+	var value = localStorage.getItem(key);
 	var item = JSON.parse(value);
 
 		$("#fname").val(item.fname[1]);
