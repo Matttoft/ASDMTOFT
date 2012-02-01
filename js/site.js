@@ -23,7 +23,7 @@ $('#json').bind('click', function(){
 						'<h3>'+ jdata.email +'</h3>'+
 						'<h4>'+ jdata.tel +'</h4>'+
 						'<h4>'+ jdata.ministry +'</h4>'+
-					'</li><hr />'
+					'</li><hr/>'
 				).appendTo('#browse');
 				console.log(response);
 			}

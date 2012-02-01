@@ -17,9 +17,8 @@
 	
 		<meta http-equiv="cleartype" content="on">
 	
-		<link href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" rel="stylesheet" type="text/css" />	
+		<link href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" rel="stylesheet" type="text/css"/>	
 		<link rel="stylesheet" type="text/css" href="css/indexstyle.css" />
-		<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
 		<script src="js/libs/jquery.js" type="text/javascript"></script>
 		<script src="js/libs/jquery.validate.js" type="text/javascript"></script>
 		<script src="js/libs/modernizr.custom.min.js"></script>
@@ -80,7 +79,7 @@
 				<div data-role="fieldcontain">
 					<label for="months">Months Attending</label>
 					<p id="timeattending">Please indicate the number of months you have been attending axis</p>
-					<input type="range" min="1.00" max="50.00" step="1" name="speed" id="attending" value="2" data-theme="b" />
+					<input type="range" min="1.00" max="50.00" step="1" name="months" id="attending" value="2" data-theme="b" />
 				</div>
 				
 			<div data-role="fieldcontain">
@@ -125,13 +124,14 @@
 							<h6>Administration</h6>
 					<ul data-role="listview" data-theme="a">
 						<li>					
-						<a data-theme="a" data-role="button" data-iconpos="right" data-icon="r-arrow" href="#">
+						<a id="display" data-theme="a" data-role="button" data-iconpos="right" data-icon="r-arrow" href="#">
 						Display Volunteers</a>
 						</li>
-						<li>			
-						<a data-theme="a" data-role="button" data-iconpos="right" data-icon="r-arrow" href="#">
-						Clear All Records</a>
-						</li>
+						<li>
+						<div id="clearlocal">
+			<p id="clear"><a href="#" onclick="clearItems(); location.reload();">Clear Local Storage</a></p>
+		</div>
+		</li>
 					</ul>
 					</div>
 			
@@ -150,6 +150,7 @@
 	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
 	<script src="js/libs/jquery.validate.min.js" type="text/javascript"></script>	
 	<script src="js/main.js" type="text/javascript"></script>
+	
 		</div> 
 		<footer>
 			<small>&copy;2011 Matt Toft ASD1202</small>

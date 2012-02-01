@@ -1,7 +1,7 @@
 /**
  * Project 1
  Matt Toft 
- ASD 120
+ ASD 1202
 
  */
 $(document).ready(function(){
@@ -44,91 +44,122 @@ $(document).ready(function(){
         }
     }
     
-   
-	function getData() {
-
-       $('#pullDiv').append(
-			'<li> First Name: ' + item.fname.toUpperCase()+'</li>' + 
-			'<li> Last Name: '+item.lname.toUpperCase()+'</li>'+
-			'<li>Email: ' + item.email + '</li>' +
-			'<li>Phone: ' + item.tel + '</li>' +
-			'<li>Sex: ' + item.sex + '</li>' +
-			'<li>Ministry: ' + item.group + '</li>' + 
-			'<li>Attending Months: ' + item.attending + '</li> ' +
-			'<li>Partner?: ' + item.memtype +'</li>'
-		);
-	localStorage.getItem("id", JSON.stringify());
-};
-$('#pullDiv').listview('refresh');
-
-
-   
-    function makeItemLinks (key, editLinksDiv) {
-        //add edit link
-	var editLink = $("<a data-role='button'>").addClass("editLink").html("Edit").appendTo(editLinksDiv);
-        
-   
-	//add delete item link
-	var deleteLink = $("<a data-role='button'>").addClass("deleteLink").html("Delete").appendTo(editLinksDiv);
-	deleteLink.key = key;
+function getData(){
+	var getListdiv = $('#list')[0];
 	
-         editLink.key = key;
-	deleteLink.on("click", delitem(key));
-	editLink.on("click", edit(key));
-    }
+	for(var i=0, len = localStorage.length; i < len; i++){
+		var key = localStorage.key(i);
+		var value = localStorage.getItem(key);
+		value = value.split(',');
+		var fname = value[0];
+		var lname = value[1];
+		var email = value[2];
+		var tel = value[3];
+		var sex = value[4];
+		var attending = value[5];
+		var memtype = value[6];
+		var group = value[7];
+		var newDiv = document.createElement("div"); 
 
-    function delitem () {
-	var ask = confirm ("Are you sure? This can't be undone.");
-	if (ask){
-	    localStorage.removeItem(this.key);
-            alert("Volunteer Deleted");
-           
-
-	}
-	else{
-	    alert("Volunteer was not deleted.");
-	}
-    }
-    //Edit an individual item
-    function edit (key) {
-	//Get data from item in session storage
-	var value = localStorage.getItem(key);
-	var item = JSON.parse(value);
-
-		$("#fname").val(item.fname[1]);
-        $("#lname").val(item.lname[1]);
-        $("#email").val(item.email[1]);
-        $("#tel").val(item.tel[1]);
-        $("#sex").val(item.sex[1]);
-        $("#group").val(item.group[1]);
-        $("#attending").val(item.attending[1]);
-        $("#dangerous").val(item.dangerous[1]);
-        if (item.memtype[1] === "Yes"){
-	    $("#memtype").attr("checked", "checked");
-	}
+		var newh3 = document.createElement("h3");
+		var fnameTxt = document.createTextNode(value[1]);
+		newh3.appendChild(fnameTxt);
+		newDiv.appendChild(newh3);
+		getListdiv.appendChild(newDiv);
+		var setdiv = newDiv.setAttribute("data-role", "fieldcontain");
 	
+		var newP = document.createElement("p");
+		var lnameTxt = document.createTextNode("Last Name: " + value[0]);
+		newP.appendChild(lnameTxt);
+		newDiv.appendChild(newP);
+		getListdiv.appendChild(newDiv);
+		
+		var newP = document.createElement("p");
+		var emailTxt = document.createTextNode("Email: " + value[2]);
+		newP.appendChild(emailTxt);
+		newDiv.appendChild(newP);
+		getListdiv.appendChild(newDiv);
+		
+		var newP = document.createElement("p");
+		var telTxt = document.createTextNode("Phone: " + value[3]);
+		newP.appendChild(telTxt);
+		newDiv.appendChild(newP);
+		getListdiv.appendChild(newDiv);
+		
+		var newP = document.createElement("p");
+		var emailTxt = document.createTextNode("Email: " + value[4]);
+		newP.appendChild(sexTxt);
+		newDiv.appendChild(newP);
+		getListdiv.appendChild(newDiv);
+		
+		var newP = document.createElement("p");
+		var attendingTxt = document.createTextNode("Attending(Months): " + value[5]);
+		newP.appendChild(attendingTxt);
+		newDiv.appendChild(newP);
+		getListdiv.appendChild(newDiv);
+		
+		var newP = document.createElement("p");
+		var memtypeTxt = document.createTextNode(value[6]);
+		newP.appendChild(memtypeTxt);
+		newDiv.appendChild(newP);
+		getListdiv.appendChild(newDiv);
+		
+		var newP = document.createElement("p");
+		var groupTxt = document.createTextNode("Ministry: " + value[7]);
+		newP.appendChild(groupTxt);
+		newDiv.appendChild(newP);
+		getListdiv.appendChild(newDiv);
+		
+		
+		var minImage = "logo.gif"; 
+			if(group == "Impressions"){ minImage = "Impressions.jpg"; }
+			if(group == "Usher"){ minImage = "Usher.jpg"; }
+			if(group == "Worship"){ minImage = "Worship.jpg"; }
+			if(group == "Tech"){ minImage = "Tech.jpg"; }
+			if(group == "Nursery"){ minImage = "Nursery.jpg"; }
+		
+		//add image
+		var newP = document.createElement("p");
+		var newImg = document.createElement("IMG");
+		newImg.setAttribute("src", "img/" + minImage);
+		newP.appendChild(newImg);
+		newDiv.appendChild(newP);
+		
+		//delete single item link
+		var newP = document.createElement("p");
+		var deleteLink = document.createElement("a");
+		var setHref = deleteLink.setAttribute("href", "#");
+		var setOnclick = deleteLink.setAttribute("onclick", "deleteItem(" + key + ");");
+		var deleteText = document.createTextNode("Delete item");
+		deleteLink.appendChild(deleteText);
+		newP.appendChild(deleteLink);
+		newDiv.appendChild(newP);
+		getListdiv.appendChild(newDiv);
+		
+		//edit single item link
+		var newP = document.createElement("p");
+		var editLink = document.createElement("a");
+		var setHref = editLink.setAttribute("href", "#");
+		var setOnclick = editLink.setAttribute("onclick", "editItem(" + key + ");");
+		var editText = document.createTextNode("Edit item");
+		editLink.appendChild(editText);
+		newP.appendChild(editLink);
+		newDiv.appendChild(newP);
+		//getListdiv.appendChild(newP);
+		}
+		
+		if(localStorage.getItem('apptitle')){
+			var clearLink = $('#clear').css('display', 'block'); 
+		}else{
+			var fname = "";
+			var lname = "";
+			var email = "";
+			var tel = $('#tel').val(tel);
+			var sex = $('#sex').val(sex);
+			var memtype = $('#memtype').val(memtype);
+		}
+}
 
-
-	saveEntry.unbind("click", storeData);
-		var editSubmit = $(".editLink");
-        editSubmit.val("Edit");
-	    editSubmit.key = this.key;
-        editSubmit.on("click", function () {
-               validate();
-               $.mobile.changePage("#additem.html");
-         });
-
-        
-    }
-	
-
-	function getimage(catname, makesublist) {
-		var imageli = document.createElement('li');
-		makesublist.appendChild(imageli);
-		var newimg = document.createElement('img');
-		var setsrc = newimg.setAttribute('src', "img/" + catname + ".gif");
-		imageli.appendChild(newimg);
-	}
 	
 	    function lok() {
     
