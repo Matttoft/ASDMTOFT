@@ -4,6 +4,8 @@
  */
 
 $(document).ready(function() {
+	
+		$('#getdata').empty(); // don't forget to REMOVE week 2!!!
 	//site code
 	
 		

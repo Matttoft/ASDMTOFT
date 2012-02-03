@@ -4,35 +4,38 @@
  ASD 1202
 
  */
-$(document).ready(function(){
-	
-	var formLock = $(".lockup").length;
-	
-	$('#submit').live('click',function(key) {
-		var xkey=this.key;
-		var id='';
-		
-		if(!xkey) {
-			var id = Math.floor(Math.random() * 100000001);
-		} else {
-			id = xkey;
+	$('#submit').live('click',function saveItems(id){
+	var d = new Date();
+    var key= (d.getTime());	
+	var fname = $('#fname').val();
+    var lname = $('#lname').val();
+    var email = $('#email').val();
+    var tel = $('#tel').val();
+    var radio = $('#radio').val();
+    var attending = $('#attending').val();
+    var partner = $('#partner:checked').val();
+	if(partner == "on"){ 
+		var partner = "Yes" 
+	}else{
+		var partner = "No" 
 		}
-
-		var item = {};
-		item.fname = ["First Name:", $('#fname').val()];
-		item.lname = ["Last Name:", $('#lname').val()];
-		item.email = ["Email:", $('#email').val()];
-		item.tel = ["Telephone #:", $('#tel').val()];
-		item.sex =["Sex:",$('input:radio[name=sex]:checked').val()];
-		item.group = ["Ministry:", $('#dropdown').val()];
-		item.attending = ["Attending Months:", $('#attending').val()];
-		item.memtype = ["Member Type:", $('#checkbox').val()];
-		
-		localStorage.setItem(id, JSON.stringify(item));
-		alert("Data submitted, a ministry leader will contact you soon.");
-		$.mobile.changePage( '#main', {reloadPage: true},{ allowSamePageTranstion: true},{ transition: 'none'});
-
-	});
+	
+	var dropdown = $('#dropdown').val();
+	var allItems = [
+		fname,
+		lname,
+		email,
+		tel,
+		radio,
+		attending,
+		partner,
+		dropdown
+	];
+	localStorage.setItem(key, allItems);
+	location.reload();
+	alert("Thank You. A ministry leader will contact you soon.");
+$.mobile.changePage( 'additem.html', {reloadPage: true},{ allowSamePageTranstion: true},{ transition: 'none'})
+});
 	
 	    function clearData() {
         if (localStorage.length === 0) {
@@ -44,8 +47,8 @@ $(document).ready(function(){
         }
     }
     
-function getData(){
-	var getListdiv = $('#list')[0];
+function getItems(){
+	var getListdiv = $('#display')[0];
 	
 	for(var i=0, len = localStorage.length; i < len; i++){
 		var key = localStorage.key(i);
@@ -55,25 +58,19 @@ function getData(){
 		var lname = value[1];
 		var email = value[2];
 		var tel = value[3];
-		var sex = value[4];
+		var radio = value[4];
 		var attending = value[5];
-		var memtype = value[6];
-		var group = value[7];
+		var partner = value[6];
+		var dropdown = value[7];
 		var newDiv = document.createElement("div"); 
 
 		var newh3 = document.createElement("h3");
-		var fnameTxt = document.createTextNode(value[1]);
+		var fnameTxt = document.createTextNode(value[0]+" "+ value[1]);
 		newh3.appendChild(fnameTxt);
 		newDiv.appendChild(newh3);
 		getListdiv.appendChild(newDiv);
 		var setdiv = newDiv.setAttribute("data-role", "fieldcontain");
-	
-		var newP = document.createElement("p");
-		var lnameTxt = document.createTextNode("Last Name: " + value[0]);
-		newP.appendChild(lnameTxt);
-		newDiv.appendChild(newP);
-		getListdiv.appendChild(newDiv);
-		
+			
 		var newP = document.createElement("p");
 		var emailTxt = document.createTextNode("Email: " + value[2]);
 		newP.appendChild(emailTxt);
@@ -87,8 +84,8 @@ function getData(){
 		getListdiv.appendChild(newDiv);
 		
 		var newP = document.createElement("p");
-		var emailTxt = document.createTextNode("Email: " + value[4]);
-		newP.appendChild(sexTxt);
+		var radioTxt = document.createTextNode("Sex: " + value[4]);
+		newP.appendChild(radioTxt);
 		newDiv.appendChild(newP);
 		getListdiv.appendChild(newDiv);
 		
@@ -99,33 +96,33 @@ function getData(){
 		getListdiv.appendChild(newDiv);
 		
 		var newP = document.createElement("p");
-		var memtypeTxt = document.createTextNode(value[6]);
-		newP.appendChild(memtypeTxt);
+		var partnerTxt = document.createTextNode("Axis Partner?: " + value[6]);
+		newP.appendChild(partnerTxt);
 		newDiv.appendChild(newP);
 		getListdiv.appendChild(newDiv);
 		
 		var newP = document.createElement("p");
-		var groupTxt = document.createTextNode("Ministry: " + value[7]);
-		newP.appendChild(groupTxt);
+		var dropdownTxt = document.createTextNode("Ministry: " + value[7]);
+		newP.appendChild(dropdownTxt);
 		newDiv.appendChild(newP);
 		getListdiv.appendChild(newDiv);
 		
 		
 		var minImage = "logo.gif"; 
-			if(group == "Impressions"){ minImage = "Impressions.jpg"; }
-			if(group == "Usher"){ minImage = "Usher.jpg"; }
-			if(group == "Worship"){ minImage = "Worship.jpg"; }
-			if(group == "Tech"){ minImage = "Tech.jpg"; }
-			if(group == "Nursery"){ minImage = "Nursery.jpg"; }
+			if(dropdown == "Impressions"){ minImage = "Impressions.gif"; }
+			if(dropdown == "Usher"){ minImage = "Usher.gif"; }
+			if(dropdown == "Worship"){ minImage = "Worship.gif"; }
+			if(dropdown == "Tech"){ minImage = "Tech.gif"; }
+			if(dropdown == "Nursery"){ minImage = "Nursery.gif"; }
 		
-		//add image
+	
 		var newP = document.createElement("p");
 		var newImg = document.createElement("IMG");
 		newImg.setAttribute("src", "img/" + minImage);
 		newP.appendChild(newImg);
 		newDiv.appendChild(newP);
 		
-		//delete single item link
+	
 		var newP = document.createElement("p");
 		var deleteLink = document.createElement("a");
 		var setHref = deleteLink.setAttribute("href", "#");
@@ -136,7 +133,7 @@ function getData(){
 		newDiv.appendChild(newP);
 		getListdiv.appendChild(newDiv);
 		
-		//edit single item link
+		
 		var newP = document.createElement("p");
 		var editLink = document.createElement("a");
 		var setHref = editLink.setAttribute("href", "#");
@@ -145,7 +142,6 @@ function getData(){
 		editLink.appendChild(editText);
 		newP.appendChild(editLink);
 		newDiv.appendChild(newP);
-		//getListdiv.appendChild(newP);
 		}
 		
 		if(localStorage.getItem('apptitle')){
@@ -155,56 +151,78 @@ function getData(){
 			var lname = "";
 			var email = "";
 			var tel = $('#tel').val(tel);
-			var sex = $('#sex').val(sex);
-			var memtype = $('#memtype').val(memtype);
+			var radio = $('#radio').val(radio);
+			var partner = $('#partner').val(partner);
 		}
 }
 
+function editItem(id){
+
+		var itemId = id;
+		var value = localStorage.getItem(itemId);
+		value = value.split(',');
+		var fname = value[0];
+		var lname = value[1];
+		var email = value[2];
+		var tel = value[3];
+		var radio = value[4];
+		var attending = value[5];
+		var partner = value[6];
+		var dropdown = value[7];
 	
-	    function lok() {
-    
-    	if ($(".lockup").length === 0){
-    		$("[type='submit']").button('enable');
-    	};	
-    };  
+	$('#fname').val(fname);
+	$('#lname').val(lname);
+	$('#email').val(email);
+	$('#tel').val(tel);
+	$('#radio').val(radio);
+	$('#attending').val(attending);
+	if(partner == "Yes"){
+		$('#partner').attr('checked', 'checked');
+	$('#dropdown').val(dropdown);
+	var editButton = $('#edit-item-button').css('display', 'block');
+	var subresButtons = $('#submit-reset-buttons').css('display', 'none');
+	var itemList = $('#list').css('display', 'none');
+	
+	
+	function clickEdit(){
+		var fname = $('#fname').val();
+		var lname = $('#lanme').val();
+		var email = $('#email').val();
+		var tel = $('#tel').val();
+		var radio = $('#radio').val();
+		var attending = $('#attending').val();
+		if(partner == "Yes"){ 
+			var partner = "Yes" 
+		}else{
+			var partner = "No" 
+			}
+			var dropdown = $('#dropdown').val();	
+		var allItems = [
+			fname,
+			lname,
+			email,
+			tel,
+			radio,
+			attending,
+			partner,
+			dropdown
+			];
+		if(dropdown != "" && dropdown != "Select a Ministry" && release != ""){
+			localStorage.setItem(itemId, allItems);
+			alert("Record Updated!");
+			location.reload();
+		}else{
+			alert("These fields are required.");
+		}
+	};
+	
+	$('#edit-item').bind('click', clickEdit);
+}
+};
 
 
 
-	$("#fname").live("blur", function(){
-		if (this.value === "") {
-            $(this).css("border", "solid 1px red");
-            $("#fnameErr").show();
-		};
-		if(this.value !== "") {
-			$(this).css("border", "solid 1px black");
-			$("#fnameErr").remove();
-		};
-		lok();         
-	});
 
-	$("#lname").live("blur", function(){
-		if (this.value === "") {
-            $(this).css("border", "solid 1px red");
-            $("#lnameErr").show();
-		};
-		if(this.value !== "") {
-			$(this).css("border", "solid 1px black");
-			$("#lnameErr").remove();		
-		};
-		lok();
-	});
-
-	$("#dropdown").live("change", function(){
-		if (this.value === "") {
-            $("#groupErr").show();
-		};
-		if(this.value !== "Select Ministry") {
-			$("#groupErr").remove();
-		};
-		lok();
-		
-		
-	});
 		$( "#reset" ).live( "click", function(e) {
 		e.preventDefault();
 	 	clearData();
@@ -212,18 +230,25 @@ function getData(){
 	
 	
 	  var display = $("#display")
-      .live("click", function (){      
-         getdata([], "pullDiv");
+      .live("click", function (){
+      	$('#minform').empty();      
+         getItems([], "display");
          console.log("display link was clicked");
          
       });
+      
+      function deleteItem(id){
+	var ask = confirm("Are you sure?");
+	if(ask){
+		localStorage.removeItem(id);
+		window.location.reload();
+	}else{
+		alert("Item not removed.");
+	}
+}
 
 
 
 
-});
-$("#minsignup").validate({
-    submitHandler: function(form) {
-        console.log("Call Action");
-    }
-});
+
+
