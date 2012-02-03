@@ -34,7 +34,7 @@
 	localStorage.setItem(key, allItems);
 	location.reload();
 	alert("Thank You. A ministry leader will contact you soon.");
-//$.mobile.changePage( 'additem.html', {reloadPage: true},{ allowSamePageTranstion: true},{ transition: 'none'})
+	$.mobile.changePage( 'additem.html', {reloadPage: true},{ allowSamePageTranstion: true},{ transition: 'none'})
 });
 	
 	    function clearData() {
