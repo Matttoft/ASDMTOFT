@@ -4,7 +4,7 @@
  ASD 1202
 
  */
-	$('#submit').live('click',function saveItems(id){
+	$('#submit').bind('click',function saveItems(id){
 	var d = new Date();
     var key= (d.getTime());	
 	var fname = $('#fname').val();
@@ -230,7 +230,7 @@ function editItem(id){
 	
 	
 	  var display = $("#display")
-      .live("click", function (){
+      .bind("click", function (){
       	$('#minform').empty();      
          getItems([], "display");
          console.log("display link was clicked");

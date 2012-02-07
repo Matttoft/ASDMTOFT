@@ -3,9 +3,8 @@
  * ASD 1112
  */
 
-$(document).ready(function() {
-	
-		$('#getdata').empty(); 	
+
+
 		
 		
 $('#json').bind('click', function(){
@@ -19,7 +18,7 @@ $('#json').bind('click', function(){
 				var jdata = response.techteam[i];
 				$(''+
 					'<li class="members">'+
-						'<h2>'+ jdata.fname +'</h2>'+
+						'<h2>'+ jdata.fname +" " + jdata.lname + '</h2>'+
 						'<h3>'+ jdata.email +'</h3>'+
 						'<h4>'+ jdata.tel +'</h4>'+
 						'<h4>'+ jdata.ministry +'</h4>'+
@@ -41,7 +40,7 @@ $('#json').bind('click', function(){
 		dataType: 'xml',
 		success: function(xml){
 			$(xml).find("mem").each(function(){
-   				var name = $(this).find('fname').text();
+   				var name = $(this).find('fname').text()+" "+ $(this).find('lname').text() ;
    				var email= $(this).find('email').text();
    				var tel= $(this).find('phone').text();
 				var min= $(this).find('min').text();
@@ -89,14 +88,14 @@ $('#json').bind('click', function(){
 			for (var m=0; m<lines.length; m++){
 				var member = lines[m];
 			$(''+
-					'<li class="memebrs">'+
-						'<h2>'+ member[0] +'</h2>'+
+					'<li class="members">'+
+						'<h2>'+ member[0]+" " + member[1] +'</h2>'+
 						'<h4>'+ member[5] +'</h4>'+
 						'<h4>'+ member[2] +'</h4>'+
 						'<h4>'+ member[3] +'</h4>'+
 					'</li><hr />'
 				).appendTo('#browse');
-			console.log(lines);	
+			console.log(data);	
 			}
         }
 	});
@@ -106,6 +105,4 @@ $('#json').bind('click', function(){
 		
 		
 		
-		
-	});
 		
