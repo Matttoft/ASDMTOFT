@@ -127,8 +127,10 @@ function getItems() {
 		var lname = "";
 		var email = "";
 		var tel = $('#tel').val(tel);
-		var sex = $('#radio').val(sex);
+		var sex = $('#sex').val(sex);
+		var attending =$('#attending').val(attending);
 		var partner = $('#partner').val(partner);
+		var dropdown= $('#dropdown').val(dropdown);
 	}
 }
 
@@ -161,7 +163,7 @@ function editItem(id) {
 		$('#dropdown').val(dropdown);
 		var editButton = $('#edit-item').css('display', 'block');
 		var subresButtons = $('#subres').css('display', 'none');
-//		var itemList = $('#list').css('display', 'none');
+		var itemList = $('#list').css('display', 'none');
 
 		function clickEdit() {
 		
