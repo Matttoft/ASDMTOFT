@@ -65,17 +65,11 @@
 					<label for="tel">Phone Number</label>
 					<input type="tel"  data-theme='c' name="tel" id="tel" placeholder="555-555-5555" class="required" />
 				</div>
-		
-					<div id='radio' data-role="fieldcontain">
-					<fieldset data-role="controlgroup" data-type="horizontal">
-					<legend>Sex</legend>
-						<input type="radio" value="Male" name="radio" id="male" data-theme="d" />
-						<label for="male">Male</label>
-						<input type="radio" value="Female" name="radio" id="female"  data-theme="d"/>
-						<label for="female">Female</label>
-					</fieldset>	
+		<div  data-role="fieldcontain">
+					<label for="sex">Sex</label>
+				<label data-theme="d" for="male">Male </label><input type="radio" value="Male" id="male" name="sex" />
+				<label data-theme="d" for="female">Female </label><input type="radio" checked value="Female" id="female" name="sex" /><br />
 				</div>
-				
 				<div data-role="fieldcontain">
 					<label for="months">Months Attending</label>
 					<p id="timeattending">Please indicate the number of months you have been attending axis</p>
@@ -109,22 +103,26 @@
 				</div>
 
 		
-				<div data-role="fieldcontain">
+				<div id='subres' data-role="fieldcontain">
 					<input type="submit" id='submit' value="Submit" data-theme="c" data-icon="check" data-iconpos="right" />
-					<input type="reset" value="Reset" data-theme="d" data-icon="back" data-iconpos="right" />
+					<input type="reset" value="Clear Form" data-theme="d" data-icon="back" data-iconpos="right" />
 				</div>
+				
+				<div id="edit-item-button" style="display: none;">
+				<input type="button" id="edit-item" value="Save Changes" />
+			</div>
 				
 			</fieldset>	
 				
 			</form>
-			
+			<div id="list"></div>
 			</div>
 			
 			<div data-role="collapsible" data-theme='c'>
 							<h6>Administration</h6>
 					<ul data-role="listview" data-theme="a">
 						<li>											
-						<a id="display" data-theme="a" data-role="button" data-iconpos="right" data-icon="r-arrow" href="#">
+						<a id="displaybutton" data-theme="a" data-role="button" data-iconpos="right" data-icon="r-arrow" href="#">
 						Display Volunteers</a>
 						</li>
 					
@@ -132,6 +130,7 @@
 						<a href="#" data-theme="a" data-role="button" onclick="clearData(); location.reload();">Clear Local Storage</a>
 						</li>
 					</ul>
+					<div id='display'></div>
 					</div>
 			
 			<div data-role="footer" data-theme="a">
