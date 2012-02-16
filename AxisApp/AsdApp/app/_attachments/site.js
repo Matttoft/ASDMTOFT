@@ -10,7 +10,7 @@
 $('#json').bind('click', function(){
 	$('#browse').empty();
 	$.ajax({
-		url: 'XHR/data.json',
+		url: 'data.json',
 		type: 'GET',
 		dataType: 'json',
 		success: function(response){
@@ -35,7 +35,7 @@ $('#json').bind('click', function(){
    $('#xml').bind('click', function(){
 	$('#browse').empty();
 	$.ajax({
-		url: 'XHR/data.xml',
+		url: 'data.xml',
 		type: 'GET',
 		dataType: 'xml',
 		success: function(xml){
@@ -65,7 +65,7 @@ $('#json').bind('click', function(){
 	$('#browse').empty();
 	 $.ajax({
         type: "GET",
-        url: "XHR/data.csv",
+        url: "data.csv",
         dataType: "text",
         success: function(data) {
         	var allTextLines = data.split(/\r\n|\n/);

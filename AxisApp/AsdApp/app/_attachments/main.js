@@ -109,7 +109,7 @@ function getItems() {
 
 		var newP = document.createElement("p");
 		var newImg = document.createElement("IMG");
-		newImg.setAttribute("src", "img/" + minImage);
+		newImg.setAttribute("src",minImage);
 		newP.appendChild(newImg);
 		newDiv.appendChild(newP);
 		
