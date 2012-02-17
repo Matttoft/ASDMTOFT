@@ -1,5 +1,5 @@
 function(doc) {
-  if (doc._id.substr(0,5)==='tech:') {
+  if (doc._id.substr(0,4)==='imp:') {
     emit(doc._id, {
     	"fname":doc.fname,
     	"lname":doc.lname,

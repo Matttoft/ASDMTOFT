@@ -37,24 +37,7 @@
 			<div data-role="header" id="header">
 					<center> <img src="logo.gif" /> </center>
 				</div>
-		<div id="getdata" data-role="fieldcontain">
-				<div id="get-data-buttons">
-					<div class="ui-grid-a">
-						<div class="ui-block-a">
-							<a href="#" data-role="button" data-theme="b" id="json">JSON</a>
-						</div>
-					
-						<div class="ui-block-b">
-							<a href="#" data-role="button" data-theme="b" id="xml">XML</a>
-						</div>
-						
-						<div class="ui-block-a">
-							<a href="#" data-role="button" data-theme="b" id="csv">CSV</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			
+
 			<nav>
 				<a button type="button" href="additem.html" data-transition='slide' data-back='true'>SIGN UP</a>
 			</nav>	
@@ -66,6 +49,9 @@
 					
 			
 		</ul>
+		<div id='couchdata' data-role='list-view' data-theme="a">
+			
+		</div>
 		
 			<div id="browse" data-role="content" data-filter="true" data-theme="a">
 				<ul data-role="listview" data-theme="c">
@@ -79,7 +65,7 @@
 						Leaders</a>
 						</li>
 						<li>			
-						<a data-theme="a" data-role="button" data-iconpos="right" data-icon="r-arrow" href="#impressions">
+						<a data-theme="a" id='impteam'data-role="button" data-iconpos="right" data-icon="r-arrow" href="#">
 						Members</a>
 						</li>
 					</ul>
@@ -123,7 +109,7 @@
 						Leaders</a>
 						</li>
 						<li>			
-						<a data-theme="a" data-role="button" data-iconpos="right" data-icon="r-arrow" href="#tech">
+						<a data-theme="a" id='techteam' data-role="button" data-iconpos="right" data-icon="r-arrow" href="#">
 						Members</a>
 						</li>
 					</ul>
@@ -168,7 +154,7 @@
 		<div data-role="page" id="JSON" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 
 		</div>
@@ -176,7 +162,7 @@
 		<div data-role="page" id="XML" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 
 		</div>
@@ -184,7 +170,7 @@
 		<div data-role="page" id="CSV" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 
 		</div>
@@ -193,7 +179,7 @@
 		<div data-role="page" id="impressions" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 								
@@ -218,7 +204,7 @@
 			<div data-role="page" id="usher" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 								
@@ -244,7 +230,7 @@
 			<div data-role="page" id="worship" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 								
@@ -270,7 +256,7 @@
 			<div data-role="page" id="tech" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 								
@@ -295,7 +281,7 @@
 			<div data-role="page" id="nursery" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 								
@@ -320,7 +306,7 @@
 			<div data-role="page" id="all" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 			
@@ -366,7 +352,7 @@
 					<div data-role="page" id="impressionsleader" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 								
@@ -386,7 +372,7 @@
 			<div data-role="page" id="usherleader" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 								
@@ -408,7 +394,7 @@
 			<div data-role="page" id="worshipleader" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 								
@@ -430,7 +416,7 @@
 			<div data-role="page" id="techleader" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 								
@@ -451,7 +437,7 @@
 			<div data-role="page" id="nurseryleader" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 								
@@ -472,7 +458,7 @@
 			<div data-role="page" id="allleader" data-add-back-btn="true" data-theme="a">
 			
 			<div data-role="header" data-position="fixed" id="header">
-				<center> <img src="logogif"/> </center>
+				<center> <img src="logo.gif"/> </center>
 				</div>
 					
 			

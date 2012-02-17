@@ -1,10 +1,11 @@
 $(document).ready(function(){
-	$('#json').bind('click', function(){
+	$('#techteam').bind('click', function(){
 		$('#browse').empty();
 	$.ajax({
 		"url":"_view/techteam",
 		"dataType":"json",
 		"success": function(data){
+			console.log(data);
 			$.each(data.rows, function(index,tech){
 				var fname=tech.value.fname;
 				var lname=tech.value.lname;
@@ -13,41 +14,49 @@ $(document).ready(function(){
 				var sex=tech.value.sex;
 				var min=tech.value.ministry;
 				var partner=tech.value.memtype;
-				var newDiv = document.createElement("div");
-
-				var newh3 = document.createElement("h3");
-				
-				var setdiv = newDiv.setAttribute("data-role", "fieldcontain");
-				$('<h3 />', {
-					text : fname +" "+ lname
-				}).appendTo(newDiv);
-				var setdiv = newDiv.setAttribute("data-role", "fieldcontain");
-
-				$('<p />', {
-					text : 'Email: ' + email
-				}).appendTo(newDiv);
-
-				$('<p />', {
-					text : 'Phone: ' + tel
-				}).appendTo(newDiv);
-
-				$('<p />', {
-					text : 'Sex: ' + sex
-				}).appendTo(newDiv);
-				
-				$('<p />', {
-					text : 'Axis Partner?: ' + partner
-				}).appendTo(newDiv);
-
-				$('<p />', {
-					text : 'Ministry: ' + min
-				}).appendTo(newDiv);
-						
+				$('#couchdata').append(
+					$('<p>').append(
+						$('<a>').attr("href","#")
+							.text(fname+" "+lname)
+					)
+				);
 			});
+			$("#couchdata").listview('refresh');
 		}
 		
 	});
 	
 });
-	return false;
+
+
+
+	$('#impteam').bind('click', function(){
+		$('#browse').empty();
+	$.ajax({
+		"url":"_view/impteam",
+		"dataType":"json",
+		"success": function(data){
+			console.log(data);
+			$.each(data.rows, function(index,imp){
+				var fname=imp.value.fname;
+				var lname=imp.value.lname;
+				var email=imp.value.email;
+				var tel=imp.value.email;
+				var sex=imp.value.sex;
+				var min=imp.value.ministry;
+				var partner=imp.value.memtype;
+				$('#couchdata').append(
+					$('<p>').append(
+						$('<a>').attr("href","#")
+							.text(fname+" "+lname)
+					)
+				);
+			});
+			$("#couchdata").listview('refresh');
+		}
+		
+	});
+	
+});
+
 });
